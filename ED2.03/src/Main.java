@@ -31,6 +31,7 @@ public class Main {
 		Scanner scanner = new Scanner(System.in);
 
 		System.out.println("Inserir pedido '1', excluir pedido '2', buscar por bairro '3', consulta total '4', limpar arquivo '5'.");
+
 		int opcao = scanner.nextInt();
 		if (opcao == 1)
 			escreva.inserirPedido();

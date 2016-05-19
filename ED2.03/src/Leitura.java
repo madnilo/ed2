@@ -46,5 +46,13 @@ public class Leitura {
 		}
 		return lista;
 	}
+	
+	public Pedidos consultaTotalSemPrint() throws JAXBException {
+		File file = new File("C:\\xml\\file.xml");
+		JAXBContext jaxbContext = JAXBContext.newInstance(Pedidos.class);
+		Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+		Pedidos lista = (Pedidos) jaxbUnmarshaller.unmarshal(file);
+		return lista;
+	}
 
 }

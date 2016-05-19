@@ -1,6 +1,4 @@
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import javax.xml.bind.JAXBContext;
@@ -13,7 +11,7 @@ public class Escrita {
 	public void escreverArquivoInvertido() throws JAXBException{
 		ArquivosInvertidos arquivosInvertidos = new ArquivosInvertidos();
 		Leitura leia = new Leitura();
-		Pedidos lista = leia.consultaTotal();
+		Pedidos lista = leia.consultaTotalSemPrint();
 		int i = 0;
 		for (Pedido pedido : lista.pedidos){
 			i++;
@@ -23,10 +21,16 @@ public class Escrita {
 				arquivo.setLuzia(i);
 				arquivosInvertidos.arquivoInvertido.add(arquivo);
 			}
+			if(pedido.getBairro().equals("Grageru")){
+				ArquivoInvertido arquivo = new ArquivoInvertido();
+				arquivo.setGrageru(i);
+				arquivo.setLuzia(0);
+				arquivosInvertidos.arquivoInvertido.add(arquivo);
+			}
 		}
 		
 		File file = new File("C:\\xml\\arquivoinvertido.xml");
-		JAXBContext jaxbContext = JAXBContext.newInstance(Pedidos.class);
+		JAXBContext jaxbContext = JAXBContext.newInstance(ArquivosInvertidos.class);
 		Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 		jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 		jaxbMarshaller.marshal(arquivosInvertidos, file);
@@ -84,8 +88,8 @@ public class Escrita {
 		//jaxbMarshaller.marshal(lista, System.out);
 		Leitura leia = new Leitura();
 		leia.consultaTotal();
-		
-		//escreverArquivoInvertido();
+		escreverArquivoInvertido();
+
 
 	}
 }
