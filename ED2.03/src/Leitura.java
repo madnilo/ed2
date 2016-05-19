@@ -8,6 +8,8 @@ import javax.xml.bind.Unmarshaller;
 public class Leitura {
 	public static String separador="_________________________________________________________________________";
 	
+	
+	
 	public void busca() throws JAXBException{
 		File file = new File("C:\\xml\\file.xml");
 		JAXBContext jaxbContext = JAXBContext.newInstance(Pedidos.class);
@@ -28,7 +30,8 @@ public class Leitura {
 		}
 	}
 	
-	public void consultaTotal() throws JAXBException {
+	
+	public Pedidos consultaTotal() throws JAXBException {
 		File file = new File("C:\\xml\\file.xml");
 		JAXBContext jaxbContext = JAXBContext.newInstance(Pedidos.class);
 		Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
@@ -41,6 +44,7 @@ public class Leitura {
 		+ pedido.getBairro()+ "\t\t\t"+pedido.getTelefone() +"\t\t"+pedido.getDataPedido()+"\t\t"
 		+pedido.getStatusPedido());
 		}
+		return lista;
 	}
 
 }
